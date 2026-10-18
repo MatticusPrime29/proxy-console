@@ -210,9 +210,9 @@ export function LoginPage() {
       {/* 左侧品牌展示区 */}
       <div className={styles.brandPanel}>
         <div className={styles.brandContent}>
-          <span className={styles.brandWord}>CLI</span>
+          <span className={styles.brandWord}>MATTHEW</span>
           <span className={styles.brandWord}>PROXY</span>
-          <span className={styles.brandWord}>API</span>
+          <span className={styles.brandWord}>CONSOLE</span>
         </div>
       </div>
 

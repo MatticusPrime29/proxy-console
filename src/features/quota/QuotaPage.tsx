@@ -23,6 +23,7 @@ import { useAuthStore, useQuotaStore, useThemeStore } from '@/stores';
 import type { AuthFileItem, ResolvedTheme } from '@/types';
 import { getQuotaCacheKey } from '@/utils/quota/identity';
 import { ProviderTabs } from '@/features/authFiles/components/ProviderTabs';
+import { SubscriptionOverview } from './components/SubscriptionOverview';
 import { QuotaHeader } from './components/QuotaHeader';
 import { QuotaCard } from './components/QuotaCard';
 import { QuotaTimeline } from './components/QuotaTimeline';
@@ -60,7 +61,6 @@ const SKELETON_CARD_COUNT = 6;
  * Existing providers display filenames; Devin's card and timeline share an
  * identity-aware display label. Keep the filename fallback stable for memoization.
  */
-const displayNameFor = (name: string) => name;
 
 export function QuotaPage() {
   const { t } = useTranslation();
@@ -76,6 +76,7 @@ export function QuotaPage() {
   );
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
+  const [showNames, setShowNames] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   // 页头 + tabs 的入场级联（标题 → meta → 动作 → tabs，级差 70ms）
   const revealRef = useRevealGroup<HTMLDivElement>();
@@ -173,6 +174,18 @@ export function QuotaPage() {
   const sortNow = sortMode === 'default' ? 0 : tick;
 
   const entries = useMemo(() => classifyQuotaFiles(files), [files]);
+  const displayNameFor = useCallback(
+    (name: string) => {
+      if (showNames) return name;
+      const index = entries.findIndex((entry) => entry.file.name === name);
+      const provider = entries[index]?.type ?? 'account';
+      return t('fleet_console.account', {
+        provider: provider === 'codex' ? 'Codex' : provider === 'claude' ? 'Claude' : provider,
+        number: index + 1,
+      });
+    },
+    [entries, showNames, t]
+  );
   const tabCounts = useMemo(() => buildTabCounts(entries), [entries]);
   const filteredEntries = useMemo(
     () => filterEntriesBySearch(filterEntriesByTab(entries, tab), search),
@@ -334,11 +347,20 @@ export function QuotaPage() {
         onRefreshAll={handleRefreshAll}
       />
 
+      <SubscriptionOverview files={files} loading={loading} />
+      <div className={styles.privacyToolbar}>
+        <p className={styles.fleetNote}>{t('fleet_console.quota_note')}</p>
+        <Button variant="secondary" size="sm" onClick={() => setShowNames(!showNames)}>
+          {t(showNames ? 'fleet_console.hide_names' : 'fleet_console.show_names')}
+        </Button>
+      </div>
       <section className={styles.workbench}>
         {/* 提供商导航与搜索工具栏分层，避免不同控件争夺视觉焦点。 */}
         <div className={styles.tabsRow} data-reveal>
           <ProviderTabs
-            types={TAB_IDS}
+            types={TAB_IDS.filter(
+              (id) => ['all', 'codex', 'claude'].includes(id) || (tabCounts[id] ?? 0) > 0
+            )}
             counts={tabCounts}
             active={tab}
             resolvedTheme={resolvedTheme}
@@ -430,6 +452,7 @@ export function QuotaPage() {
               <QuotaCard
                 key={`${entry.type}:${getQuotaCacheKey(entry.file)}`}
                 entry={entry}
+                displayNameOverride={displayNameFor(entry.file.name)}
                 quota={getQuota(entry)}
                 resolvedTheme={resolvedTheme}
                 canRefresh={canUseActions && !entry.file.disabled}

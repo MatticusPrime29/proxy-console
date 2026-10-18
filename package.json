@@ -10,9 +10,10 @@
     "preview": "vite preview",
     "test": "bun test",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives",
-    "verify": "bun run test && bun run lint && bun run build",
+    "verify": "bun run test && bun run lint && bun run build && bun run test:gateway",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,scss}\"",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "test:gateway": "node --test deploy/gateway-check.mjs"
   },
   "dependencies": {
     "@codemirror/lang-yaml": "^6.1.3",

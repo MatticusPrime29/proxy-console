@@ -57,15 +57,15 @@
     "unsaved_changes_message": "Bạn có thay đổi chưa lưu. Rời đi bây giờ sẽ mất các thay đổi đó. Bạn có muốn rời đi không?"
   },
   "title": {
-    "login": "Trung tâm Quản lý CLI Proxy API",
-    "abbr": "CPAMC"
+    "login": "Matthew’s Proxy Console",
+    "abbr": "M / Proxy"
   },
   "splash": {
-    "title": "CLI Proxy API",
-    "subtitle": "Trung tâm Quản lý"
+    "title": "Matthew’s Proxy Console",
+    "subtitle": "Codex · Claude · Your accounts"
   },
   "login": {
-    "subtitle": "Vui lòng nhập thông tin kết nối để truy cập giao diện quản lý",
+    "subtitle": "Private access through Tailscale. Use your console management key.",
     "connection_current": "URL hiện tại",
     "connection_auto_hint": "Hệ thống sẽ tự động dùng URL hiện tại để kết nối",
     "custom_connection_label": "URL kết nối tùy chỉnh:",
@@ -100,9 +100,9 @@
     "dashboard": "Bảng điều khiển",
     "quick_start": "Bắt đầu nhanh",
     "ai_providers": "AI Provider",
-    "auth_files": "File xác thực",
-    "oauth": "Đăng nhập OAuth",
-    "quota_management": "Quản lý Quota",
+    "auth_files": "Accounts",
+    "oauth": "Connect accounts",
+    "quota_management": "Subscriptions",
     "plugins": "Plugin",
     "plugin_store": "Cửa hàng Plugin",
     "config_management": "Bảng cấu hình",
@@ -1534,7 +1534,7 @@
     "precise_save_recovery_required": "Không thể đọc lại kết quả lưu. Đã tạm dừng chỉnh sửa. Lưu lại để khôi phục mốc cơ sở của bản nháp, hoặc tải lại cấu hình."
   },
   "quota_management": {
-    "title": "Quản lý Quota",
+    "title": "My subscriptions",
     "description": "Theo dõi trạng thái quota OAuth của credential Antigravity, Codex, Claude, Kimi và xAI.",
     "refresh_all_credentials": "Làm mới mọi credential",
     "sort_label": "Sắp xếp",
@@ -1816,7 +1816,7 @@
     "toggle_collapse": "Thu gọn thanh bên",
     "expand": "Mở rộng",
     "collapse": "Thu gọn",
-    "subtitle": "Bảng điều khiển CLI Proxy API",
+    "subtitle": "Personal subscription console",
     "auth_files_count": "File xác thực: {{count}}"
   },
   "footer": {
@@ -2275,5 +2275,17 @@
     "unavailable": "Tính năng đặt lại hiện không khả dụng.",
     "rate_limited": "Yêu cầu bị giới hạn tốc độ.",
     "auth_error": "Ủy quyền đã bị từ chối."
+  },
+  "fleet_console": {
+    "intro": "Your subscriptions, in one place. Account logins stay on your home proxy.",
+    "show_names": "Show account names",
+    "hide_names": "Hide account names",
+    "account": "{{provider}} account {{number}}",
+    "connected": "{{count}} connected · {{enabled}} enabled",
+    "add_account": "Add an account",
+    "manage_accounts": "Manage accounts",
+    "no_accounts": "No account connected yet",
+    "quota_note": "Refresh to read provider limits. Unknown usage is never treated as available capacity. Reset times use your browser’s timezone.",
+    "private_credentials": "Credential exports and raw JSON editing are disabled; tokens stay on the home proxy."
   }
 }

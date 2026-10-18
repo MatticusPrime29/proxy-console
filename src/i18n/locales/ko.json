@@ -57,15 +57,15 @@
     "unsaved_changes_message": "저장되지 않은 변경 사항이 있습니다. 지금 나가면 변경 사항이 삭제됩니다. 나가시겠습니까?"
   },
   "title": {
-    "login": "CLI Proxy API 관리 센터",
-    "abbr": "CPAMC"
+    "login": "Matthew’s Proxy Console",
+    "abbr": "M / Proxy"
   },
   "splash": {
-    "title": "CLI Proxy API",
-    "subtitle": "관리 센터"
+    "title": "Matthew’s Proxy Console",
+    "subtitle": "Codex · Claude · Your accounts"
   },
   "login": {
-    "subtitle": "CLI Proxy API v8 이상 버전에 연결",
+    "subtitle": "Private access through Tailscale. Use your console management key.",
     "connection_current": "현재 URL",
     "connection_auto_hint": "시스템이 자동으로 현재 URL을 사용하여 연결합니다",
     "custom_connection_label": "사용자 지정 연결 URL:",
@@ -100,9 +100,9 @@
     "dashboard": "대시보드",
     "quick_start": "빠른 시작",
     "ai_providers": "AI 공급자",
-    "auth_files": "인증 파일",
-    "oauth": "OAuth 로그인",
-    "quota_management": "할당량 관리",
+    "auth_files": "Accounts",
+    "oauth": "Connect accounts",
+    "quota_management": "Subscriptions",
     "plugins": "플러그인",
     "plugin_store": "플러그인 스토어",
     "config_management": "설정 패널",
@@ -1583,7 +1583,7 @@
     "search_empty_title": "일치하는 계정 없음",
     "search_empty_desc": "다른 파일명이나 이메일을 입력하거나 검색을 초기화하세요.",
     "search_clear": "검색 초기화",
-    "title": "할당량 관리",
+    "title": "My subscriptions",
     "description": "Antigravity, Codex, Claude, Kimi 및 xAI 자격 증명의 OAuth 할당량 상태를 모니터링합니다.",
     "refresh_all_credentials": "모든 자격 증명 새로 고침",
     "sort_label": "정렬",
@@ -1860,7 +1860,7 @@
     "toggle_collapse": "사이드바 접기",
     "expand": "펼치기",
     "collapse": "접기",
-    "subtitle": "CLI Proxy API 콘솔",
+    "subtitle": "Personal subscription console",
     "auth_files_count": "인증 파일: {{count}}개"
   },
   "footer": {
@@ -2269,5 +2269,17 @@
     "unavailable": "현재 초기화를 사용할 수 없습니다.",
     "rate_limited": "요청 속도가 제한되었습니다.",
     "auth_error": "인증이 거부되었습니다."
+  },
+  "fleet_console": {
+    "intro": "Your subscriptions, in one place. Account logins stay on your home proxy.",
+    "show_names": "Show account names",
+    "hide_names": "Hide account names",
+    "account": "{{provider}} account {{number}}",
+    "connected": "{{count}} connected · {{enabled}} enabled",
+    "add_account": "Add an account",
+    "manage_accounts": "Manage accounts",
+    "no_accounts": "No account connected yet",
+    "quota_note": "Refresh to read provider limits. Unknown usage is never treated as available capacity. Reset times use your browser’s timezone.",
+    "private_credentials": "Credential exports and raw JSON editing are disabled; tokens stay on the home proxy."
   }
 }

@@ -1,3 +1,12 @@
+# Matthew’s fork
+
+This is Matthew’s personal subscription console, separate from the Fleet infrastructure repository.
+Keep real hosts, account metadata, OAuth files, keys, and deployment state out of this public fork.
+The upstream CLIProxyAPI backend remains authoritative. Do not change routing or install Claude workers just to change this UI.
+`deploy/gateway.mjs` enforces separate inference/admin listeners; preserve authentication, path allowlists, streaming, and WebSockets.
+Keep raw credential exports disabled. `bun run verify` includes Node 24 gateway boundary tests.
+Read `deploy/README.md` before deploying; check active work before restarting any established service.
+
 # Repository Guidelines
 
 ## Project Scope & Structure

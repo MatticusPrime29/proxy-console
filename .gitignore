@@ -34,3 +34,11 @@ settings.local.json
 *.njsproj
 *.sln
 *.sw?
+
+# Private deployment state and Python cache
+.env
+.env.*
+.state/
+__pycache__/
+*.pyc
+deploy/management.html

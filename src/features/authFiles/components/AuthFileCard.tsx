@@ -288,8 +288,8 @@ export function AuthFileCard(props: AuthFileCardProps) {
                 size="sm"
                 onClick={() => onDownload(file.name)}
                 className={styles.iconButton}
-                title={t('auth_files.download_button')}
-                disabled={disableControls}
+                title={t('fleet_console.private_credentials')}
+                disabled
               >
                 <IconDownload size={15} />
               </Button>
@@ -298,8 +298,8 @@ export function AuthFileCard(props: AuthFileCardProps) {
                 size="sm"
                 onClick={() => onOpenPrefixProxyEditor(file)}
                 className={styles.iconButton}
-                title={t('auth_files.prefix_proxy_button')}
-                disabled={disableControls || isManualRefreshing}
+                title={t('fleet_console.private_credentials')}
+                disabled
               >
                 <IconSettings size={15} />
               </Button>

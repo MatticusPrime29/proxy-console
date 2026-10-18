@@ -187,7 +187,8 @@ export function BatchActionBar(props: BatchActionBarProps) {
             variant="secondary"
             size="sm"
             onClick={onDownload}
-            disabled={disableControls || selectionCount === 0}
+            title={t('fleet_console.private_credentials')}
+            disabled
           >
             {t('auth_files.batch_download')}
           </Button>

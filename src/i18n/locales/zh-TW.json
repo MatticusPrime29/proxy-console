@@ -57,15 +57,15 @@
     "unsaved_changes_message": "你有未儲存的變更，離開後將遺失這些變更。確定要離開嗎？"
   },
   "title": {
-    "login": "CLI Proxy API Management Center",
-    "abbr": "CPAMC"
+    "login": "Matthew’s Proxy Console",
+    "abbr": "M / Proxy"
   },
   "splash": {
-    "title": "CLI Proxy API",
-    "subtitle": "管理中心"
+    "title": "Matthew’s Proxy Console",
+    "subtitle": "Codex · Claude · Your accounts"
   },
   "login": {
-    "subtitle": "連線至 CLI Proxy API v8 或更新版本",
+    "subtitle": "Private access through Tailscale. Use your console management key.",
     "connection_current": "目前位址",
     "connection_auto_hint": "系統將自動使用目前存取位址進行連線",
     "custom_connection_label": "自訂連線位址:",
@@ -100,9 +100,9 @@
     "dashboard": "儀表板",
     "quick_start": "快速開始",
     "ai_providers": "AI 供應商",
-    "auth_files": "驗證檔案",
-    "oauth": "OAuth 登入",
-    "quota_management": "配額管理",
+    "auth_files": "Accounts",
+    "oauth": "Connect accounts",
+    "quota_management": "Subscriptions",
     "plugins": "插件管理",
     "plugin_store": "插件商店",
     "config_management": "設定面板",
@@ -547,7 +547,6 @@
     "reset_confirm_button": "確認重置",
     "reset_not_confirmed": "尚未確認額度重置成功，請重新整理額度後再決定是否重試。",
     "reset_cooldown_failed": "額度已重置，但代理冷卻清除失敗。請在原連線的認證檔案頁面使用「清除冷卻」，不要再次消耗重置卡。",
-
     "reset_success": "已重置「{{name}}」的 Codex 配額",
     "reset_failed": "重置「{{name}}」的 Codex 配額失敗：{{message}}",
     "plan_plus": "Plus",
@@ -1610,7 +1609,7 @@
     "search_empty_title": "沒有符合的帳號",
     "search_empty_desc": "請嘗試其他檔案名稱或電子郵件，或清除搜尋。",
     "search_clear": "清除搜尋",
-    "title": "配額管理",
+    "title": "My subscriptions",
     "description": "集中查看 OAuth 配額與剩餘情況",
     "refresh_all_credentials": "重新整理全部憑證",
     "sort_label": "排序",
@@ -1887,7 +1886,7 @@
     "toggle_collapse": "收起側邊欄",
     "expand": "展開",
     "collapse": "收起",
-    "subtitle": "CLI Proxy API 管理控制台",
+    "subtitle": "Personal subscription console",
     "auth_files_count": "驗證檔案：{{count}} 個"
   },
   "footer": {
@@ -2296,5 +2295,17 @@
     "unavailable": "重置暫不可用。",
     "rate_limited": "請求過於頻繁。",
     "auth_error": "授權遭拒。"
+  },
+  "fleet_console": {
+    "intro": "Your subscriptions, in one place. Account logins stay on your home proxy.",
+    "show_names": "Show account names",
+    "hide_names": "Hide account names",
+    "account": "{{provider}} account {{number}}",
+    "connected": "{{count}} connected · {{enabled}} enabled",
+    "add_account": "Add an account",
+    "manage_accounts": "Manage accounts",
+    "no_accounts": "No account connected yet",
+    "quota_note": "Refresh to read provider limits. Unknown usage is never treated as available capacity. Reset times use your browser’s timezone.",
+    "private_credentials": "Credential exports and raw JSON editing are disabled; tokens stay on the home proxy."
   }
 }

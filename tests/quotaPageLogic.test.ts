@@ -65,7 +65,7 @@ describe('classifyQuotaFiles', () => {
 
   test('orders entries by provider tab order', () => {
     const entries = classifyQuotaFiles(FILES);
-    expect(entries.map((entry) => entry.type)).toEqual(['claude', 'codex', 'codex', 'xai', 'kimi']);
+    expect(entries.map((entry) => entry.type)).toEqual(['codex', 'codex', 'claude', 'xai', 'kimi']);
   });
 });
 
@@ -114,8 +114,8 @@ describe('filterEntriesBySearch', () => {
       'codex-a.json',
     ]);
     expect(filterEntriesBySearch(entries, ' ALICE@example ').map(({ file }) => file.name)).toEqual([
-      'work.json',
       'personal.json',
+      'work.json',
     ]);
   });
 
@@ -232,8 +232,8 @@ describe('sortQuotaEntries', () => {
       'kimi-a.json',
       'codex-b.json',
       // unresolved tail, in the order classifyQuotaFiles produced
-      'claude-a.json',
       'codex-a.json',
+      'claude-a.json',
       'grok-a.json',
     ]);
   });

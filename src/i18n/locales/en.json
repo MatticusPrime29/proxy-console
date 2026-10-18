@@ -57,15 +57,15 @@
     "unsaved_changes_message": "You have unsaved changes. Leaving now will discard them. Do you want to leave?"
   },
   "title": {
-    "login": "CLI Proxy API Management Center",
-    "abbr": "CPAMC"
+    "login": "Matthew’s Proxy Console",
+    "abbr": "M / Proxy"
   },
   "splash": {
-    "title": "CLI Proxy API",
-    "subtitle": "Management Center"
+    "title": "Matthew’s Proxy Console",
+    "subtitle": "Codex · Claude · Your accounts"
   },
   "login": {
-    "subtitle": "Connect to CLI Proxy API v8 or later",
+    "subtitle": "Private access through Tailscale. Use your console management key.",
     "connection_current": "Current URL",
     "connection_auto_hint": "The system will automatically use the current URL for connection",
     "custom_connection_label": "Custom Connection URL:",
@@ -100,9 +100,9 @@
     "dashboard": "Dashboard",
     "quick_start": "Quick Start",
     "ai_providers": "AI Providers",
-    "auth_files": "Auth Files",
-    "oauth": "OAuth Login",
-    "quota_management": "Quota Management",
+    "auth_files": "Accounts",
+    "oauth": "Connect accounts",
+    "quota_management": "Subscriptions",
     "plugins": "Plugins",
     "plugin_store": "Plugin Store",
     "config_management": "Config Panel",
@@ -1583,7 +1583,7 @@
     "search_empty_title": "No matching accounts",
     "search_empty_desc": "Try another filename or email, or clear the search.",
     "search_clear": "Clear search",
-    "title": "Quota Management",
+    "title": "My subscriptions",
     "description": "Monitor OAuth quota status for Antigravity, Codex, Claude, Kimi, and xAI credentials.",
     "refresh_all_credentials": "Refresh all credentials",
     "sort_label": "Sort",
@@ -1860,7 +1860,7 @@
     "toggle_collapse": "Collapse sidebar",
     "expand": "Expand",
     "collapse": "Collapse",
-    "subtitle": "CLI Proxy API Console",
+    "subtitle": "Personal subscription console",
     "auth_files_count": "Authentication files: {{count}}"
   },
   "footer": {
@@ -2269,5 +2269,17 @@
     "unavailable": "Resets are currently unavailable.",
     "rate_limited": "Request rate limited.",
     "auth_error": "Authorization was refused."
+  },
+  "fleet_console": {
+    "intro": "Your subscriptions, in one place. Account logins stay on your home proxy.",
+    "show_names": "Show account names",
+    "hide_names": "Hide account names",
+    "account": "{{provider}} account {{number}}",
+    "connected": "{{count}} connected · {{enabled}} enabled",
+    "add_account": "Add an account",
+    "manage_accounts": "Manage accounts",
+    "no_accounts": "No account connected yet",
+    "quota_note": "Refresh to read provider limits. Unknown usage is never treated as available capacity. Reset times use your browser’s timezone.",
+    "private_credentials": "Credential exports and raw JSON editing are disabled; tokens stay on the home proxy."
   }
 }

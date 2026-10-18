@@ -1,3 +1,24 @@
+# Matthew’s Proxy Console
+
+Matthew’s personal fork of [CLI Proxy API Management Center](https://github.com/router-for-me/Cli-Proxy-API-Management-Center), the upstream console behind the UI shown in Theo’s video. Theo’s private modifications are not included.
+
+This remains the upstream React console, with a subscription-first home page, Codex/Claude summaries, private account labels by default, and a dark theme. All other providers remain available; unused providers are hidden from the quota tabs. Use **Connect accounts** to sign in and **Subscriptions → Refresh all credentials** to read real provider quotas. A connected account is counted from the proxy’s credential inventory; quotas are not invented or converted into dollar estimates. Quota data is click-to-refresh, not continuous billing synchronization.
+
+The separate private deployment has two loopback listeners: an inference route filter and an authenticated admin console. It does not select accounts or implement model routing; CLIProxyAPI continues to do that. Raw OAuth export and the upstream raw-credential editor are disabled. Account login, reauthentication, status toggles, quota refresh, and config management remain available. The existing fill-first/session-affinity routing stays in place; this fork does **not** add earliest-reset routing or subscription billing/cancellation.
+
+See [deployment and recovery](deploy/README.md). Actual host addresses, secrets, and deployment records belong in the private Fleet repo, not this public fork. Additional accounts must be signed in by their owner. Installing this console does not install Claude Code on workers.
+
+## Build and verify
+
+```sh
+bun install --frozen-lockfile
+bun run verify
+```
+
+Bun 1.3.14 and Node 24 are required. Verification runs upstream tests, lint, TypeScript, the single-HTML production build, and Node transport/security tests. `dist/index.html` is the deployable UI. Upstream MIT licensing and attribution are retained below.
+
+---
+
 <div align="center">
 
 <img src="./logo.jpg" alt="CLI Proxy API" width="144">

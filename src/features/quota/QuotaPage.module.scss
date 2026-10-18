@@ -218,3 +218,12 @@
     gap: 16px;
   }
 }
+
+.fleetNote {
+  color: var(--text-secondary);
+  font-size: 13px;
+  flex: 1 1 360px;
+  margin: 0;
+}
+
+.privacyToolbar { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }

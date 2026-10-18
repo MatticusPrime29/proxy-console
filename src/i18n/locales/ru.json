@@ -57,15 +57,15 @@
     "unsaved_changes_message": "У вас есть несохранённые изменения. Если вы уйдёте, они будут потеряны. Выйти?"
   },
   "title": {
-    "login": "Центр управления CLI Proxy API",
-    "abbr": "CPAMC"
+    "login": "Matthew’s Proxy Console",
+    "abbr": "M / Proxy"
   },
   "splash": {
-    "title": "CLI Proxy API",
-    "subtitle": "Центр управления"
+    "title": "Matthew’s Proxy Console",
+    "subtitle": "Codex · Claude · Your accounts"
   },
   "login": {
-    "subtitle": "Подключение к CLI Proxy API v8 или новее",
+    "subtitle": "Private access through Tailscale. Use your console management key.",
     "connection_current": "Текущий URL",
     "connection_auto_hint": "Система автоматически использует текущий URL для подключения",
     "custom_connection_label": "Пользовательский URL подключения:",
@@ -100,9 +100,9 @@
     "dashboard": "Панель",
     "quick_start": "Быстрый старт",
     "ai_providers": "Поставщики AI",
-    "auth_files": "Файлы аутентификации",
-    "oauth": "OAuth вход",
-    "quota_management": "Управление квотами",
+    "auth_files": "Accounts",
+    "oauth": "Connect accounts",
+    "quota_management": "Subscriptions",
     "plugins": "Плагины",
     "plugin_store": "Магазин плагинов",
     "config_management": "Панель конфигурации",
@@ -1586,7 +1586,7 @@
     "search_empty_title": "Аккаунты не найдены",
     "search_empty_desc": "Попробуйте другое имя файла или адрес электронной почты либо очистите поиск.",
     "search_clear": "Очистить поиск",
-    "title": "Управление квотами",
+    "title": "My subscriptions",
     "description": "Следите за статусом квот OAuth для учётных данных Antigravity, Codex, Claude, Kimi и xAI.",
     "refresh_all_credentials": "Обновить все учётные данные",
     "sort_label": "Сортировка",
@@ -1854,7 +1854,7 @@
     "toggle_collapse": "Свернуть боковую панель",
     "expand": "Развернуть",
     "collapse": "Свернуть",
-    "subtitle": "Консоль управления CLI Proxy API",
+    "subtitle": "Personal subscription console",
     "auth_files_count": "Файлов аутентификации: {{count}}"
   },
   "footer": {
@@ -2263,5 +2263,17 @@
     "unavailable": "Сбросы временно недоступны.",
     "rate_limited": "Слишком много запросов.",
     "auth_error": "Авторизация отклонена."
+  },
+  "fleet_console": {
+    "intro": "Your subscriptions, in one place. Account logins stay on your home proxy.",
+    "show_names": "Show account names",
+    "hide_names": "Hide account names",
+    "account": "{{provider}} account {{number}}",
+    "connected": "{{count}} connected · {{enabled}} enabled",
+    "add_account": "Add an account",
+    "manage_accounts": "Manage accounts",
+    "no_accounts": "No account connected yet",
+    "quota_note": "Refresh to read provider limits. Unknown usage is never treated as available capacity. Reset times use your browser’s timezone.",
+    "private_credentials": "Credential exports and raw JSON editing are disabled; tokens stay on the home proxy."
   }
 }
