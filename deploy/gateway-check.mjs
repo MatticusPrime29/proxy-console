@@ -1,9 +1,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { mkdtempSync, rmSync } from 'node:fs';
 import http from 'node:http';
 import net from 'node:net';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { once } from 'node:events';
-import { createGateway, pathAllowed } from './gateway.mjs';
+import { DatabaseSync } from 'node:sqlite';
+import { createGateway, createTelemetryTap, pathAllowed } from './gateway.mjs';
 
 const listen = async (server) => { server.listen(0, '127.0.0.1'); await once(server, 'listening'); return server.address().port; };
 const secret = 'fixture-management-key-not-real-123456789';
@@ -70,4 +74,67 @@ test('WebSocket handshake, initial bytes, and bidirectional data survive the inf
   socket.write('GET /v1/responses HTTP/1.1\r\nHost: fixture\r\nConnection: Upgrade\r\nUpgrade: websocket\r\nAuthorization: Bearer worker-fixture\r\n\r\nPING');
   await done;
   assert.match(received, /101 Switching Protocols/); assert.match(received, /WELCOME/);
+});
+
+test('inference telemetry tap records model, tokens, and hashed client key without storing raw secrets', async (t) => {
+  const dir = mkdtempSync(join(tmpdir(), 'proxy-tap-'));
+  const dbPath = join(dir, 'chats.sqlite');
+  const upstream = http.createServer((req, res) => {
+    let body = '';
+    req.on('data', (c) => { body += c; });
+    req.on('end', () => {
+      if (req.url === '/v1/responses') {
+        res.writeHead(200, { 'Content-Type': 'text/event-stream' });
+        res.write('data: {"type":"response.completed","response":{"usage":{"input_tokens":120,"input_tokens_details":{"cached_tokens":40},"output_tokens":35}}}\n\n');
+        res.end('data: [DONE]\n\n');
+      } else {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ id: 'msg_1', usage: { input_tokens: 80, cache_read_input_tokens: 15, output_tokens: 22 } }));
+      }
+    });
+  });
+  const upstreamPort = await listen(upstream);
+  const telemetry = await createTelemetryTap(dbPath);
+  const gateway = createGateway({ upstreamPort, telemetry });
+  const port = await listen(gateway);
+  t.after(() => {
+    gateway.closeAllConnections(); upstream.closeAllConnections();
+    gateway.close(); upstream.close();
+    rmSync(dir, { recursive: true, force: true });
+  });
+
+  const rawSecret = 'super-secret-client-key-never-stored';
+  const r1 = await fetch(`http://127.0.0.1:${port}/v1/responses`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${rawSecret}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ model: 'gpt-6.1-sol', stream: true, input: 'hi' }),
+  });
+  assert.equal(r1.status, 200);
+  await r1.text();
+
+  const r2 = await fetch(`http://127.0.0.1:${port}/v1/messages`, {
+    method: 'POST',
+    headers: { 'x-api-key': rawSecret, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ model: 'claude-opus-5-5', max_tokens: 16 }),
+  });
+  assert.equal(r2.status, 200);
+  await r2.text();
+
+  const db = new DatabaseSync(dbPath, { open: true, readOnly: true });
+  const rows = db.prepare('SELECT * FROM proxy_requests ORDER BY id ASC').all();
+  db.close();
+  assert.equal(rows.length, 2);
+  assert.equal(rows[0].model, 'gpt-6.1-sol');
+  assert.equal(rows[0].stream, 1);
+  assert.equal(rows[0].input_tokens, 120);
+  assert.equal(rows[0].cached_input_tokens, 40);
+  assert.equal(rows[0].output_tokens, 35);
+  assert.equal(rows[1].model, 'claude-opus-5-5');
+  assert.equal(rows[1].input_tokens, 80);
+  assert.equal(rows[1].cached_input_tokens, 15);
+  assert.equal(rows[1].output_tokens, 22);
+  for (const row of rows) {
+    assert.ok(row.client_hash && row.client_hash.length === 12);
+    assert.equal(JSON.stringify(row).includes(rawSecret), false);
+  }
 });

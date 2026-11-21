@@ -77,7 +77,9 @@ def main():
     key = key_path.read_text().strip()
     if len(key) < 32:
         raise SystemExit('Management key is too short.')
+    archive_db = home / '.local/share/fleet/chat-archive/chats.sqlite'
     for mode, port in [('inference', 8316), ('admin', 8318)]:
+        extra_env = f'Environment=ARCHIVE_DB_PATH={archive_db}\n' if mode == 'inference' else ''
         unit = f'''[Unit]
 Description=Matthew's proxy console {mode} boundary
 After=network-online.target
@@ -86,7 +88,7 @@ After=network-online.target
 ExecStart={args.node} {release}/gateway.mjs {mode}
 Environment=CONSOLE_KEY_FILE={key_path}
 Environment=CONSOLE_ORIGIN={origin}
-Restart=on-failure
+{extra_env}Restart=on-failure
 RestartSec=3
 UMask=0077
 NoNewPrivileges=true
